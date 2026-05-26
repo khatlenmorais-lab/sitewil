@@ -1676,6 +1676,54 @@ if (hamburger && navMenu) {
     });
   });
 }
+
+// ── DRAG DRONES ──
+document.querySelectorAll('.drone-bg').forEach(drone => {
+  let startX, startY, origLeft, origTop, origAnim;
+  function getPos() {
+    const style = getComputedStyle(drone);
+    return { left: parseFloat(style.left), top: parseFloat(style.top) };
+  }
+  function onStart(e) {
+    const t = e.touches ? e.touches[0] : e;
+    origAnim = drone.style.animation;
+    drone.style.animation = 'none';
+    const p = getPos();
+    origLeft = p.left;
+    origTop = p.top;
+    startX = t.clientX;
+    startY = t.clientY;
+    drone.classList.add('dragging');
+    drone.classList.remove('returning');
+    e.preventDefault();
+  }
+  function onMove(e) {
+    if (!drone.classList.contains('dragging')) return;
+    const t = e.touches ? e.touches[0] : e;
+    const dx = t.clientX - startX;
+    const dy = t.clientY - startY;
+    drone.style.left = (origLeft + dx) + 'px';
+    drone.style.top = (origTop + dy) + 'px';
+    e.preventDefault();
+  }
+  function onEnd() {
+    if (!drone.classList.contains('dragging')) return;
+    drone.classList.remove('dragging');
+    drone.classList.add('returning');
+    drone.style.left = origLeft + 'px';
+    drone.style.top = origTop + 'px';
+    setTimeout(() => {
+      drone.classList.remove('returning');
+      drone.style.animation = origAnim;
+    }, 650);
+  }
+  drone.addEventListener('mousedown', onStart);
+  document.addEventListener('mousemove', onMove);
+  document.addEventListener('mouseup', onEnd);
+  drone.addEventListener('touchstart', onStart, { passive: false });
+  document.addEventListener('touchmove', onMove, { passive: false });
+  document.addEventListener('touchend', onEnd);
+});
 </script>
 </body>
 </html>
