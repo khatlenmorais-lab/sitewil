@@ -22,7 +22,7 @@
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  html { scroll-behavior: smooth; }
+  html { scroll-behavior: smooth; scroll-padding-top: 180px; }
 
   body {
     font-family: 'Barlow', sans-serif;
@@ -153,6 +153,7 @@
     align-items: center; justify-content: center;
     text-align: center;
     padding: 160px 5% 60px;
+    scroll-margin-top: 20px;
     overflow: hidden;
   }
   .hero-badge {
@@ -309,8 +310,8 @@
   /* ── GALLERY CAROUSEL ── */
   #gallery {
     padding: 100px 5%;
-    text-align: center;
-    background: linear-gradient(180deg, transparent, rgba(249,115,22,.02), transparent);
+    position: relative;
+    scroll-margin-top: 20px;
   }
   .carousel-container {
     max-width: 1100px;
