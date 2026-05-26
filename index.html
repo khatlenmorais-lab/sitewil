@@ -1561,7 +1561,7 @@ const observer = new IntersectionObserver((entries) => {
   });
 }, { threshold: 0.12 });
 
-document.querySelectorAll('.reveal, .module').forEach(el => observer.observe(el));
+document.querySelectorAll('.reveal, .module, footer > *, .footer-logo-container').forEach(el => observer.observe(el));
 
 // ── MODULE STAGGER ──
 const moduleObs = new IntersectionObserver((entries) => {
