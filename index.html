@@ -1593,6 +1593,20 @@ const footerObs = new IntersectionObserver((entries) => {
 }, { threshold: 0.3 });
 const footerEl = document.querySelector('footer');
 if(footerEl) footerObs.observe(footerEl);
+
+// ── FIXED HEADER OFFSET ──
+function updateNavOffset() {
+  const nav = document.querySelector('nav');
+  if (!nav) return;
+  const h = nav.offsetHeight;
+  document.documentElement.style.scrollPaddingTop = h + 'px';
+  const hero = document.getElementById('hero');
+  if (hero) {
+    hero.style.paddingTop = (h + 40) + 'px';
+  }
+}
+updateNavOffset();
+window.addEventListener('resize', updateNavOffset);
 </script>
 </body>
 </html>
