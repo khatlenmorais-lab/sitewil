@@ -65,7 +65,7 @@
   nav {
     position: fixed; top: 0; left: 0; width: 100%;
     z-index: 100;
-    padding: 12px 5%;
+    padding: 10px 5%;
     display: flex; align-items: center; justify-content: space-between;
     background: rgba(10,15,46,.9);
     backdrop-filter: blur(18px);
@@ -78,10 +78,14 @@
     gap: 12px;
   }
   .logo-img {
-    height: 50px;
+    height: 75px; /* Aumentado de 50px */
     width: auto;
     border-radius: 6px;
-    box-shadow: 0 0 15px rgba(249, 115, 22, 0.2);
+    box-shadow: 0 0 20px rgba(249, 115, 22, 0.25);
+    transition: transform 0.3s;
+  }
+  .logo-img:hover {
+    transform: scale(1.05);
   }
   nav ul { list-style: none; display: flex; gap: 32px; align-items: center; }
   nav ul li a {
@@ -108,7 +112,7 @@
     display: flex; flex-direction: column;
     align-items: center; justify-content: center;
     text-align: center;
-    padding: 140px 5% 60px;
+    padding: 160px 5% 60px;
     overflow: hidden;
   }
   .hero-badge {
@@ -269,72 +273,87 @@
     background: linear-gradient(180deg, transparent, rgba(249,115,22,.02), transparent);
   }
   .carousel-container {
-    max-width: 900px;
+    max-width: 1100px;
     margin: 50px auto 0;
     position: relative;
-    border-radius: 16px;
-    overflow: hidden;
-    border: 1px solid var(--border);
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+    padding: 0 40px;
   }
   .carousel-track-wrapper {
     overflow: hidden;
     width: 100%;
-    aspect-ratio: 4 / 3;
-    max-height: 550px;
   }
   .carousel-track {
     display: flex;
     transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
-    height: 100%;
+    gap: 24px;
   }
   .carousel-slide {
-    min-width: 100%;
-    position: relative;
-    height: 100%;
+    flex: 0 0 calc(33.333% - 16px);
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+  }
+  .carousel-slide:hover {
+    transform: translateY(-5px);
+    border-color: rgba(249, 115, 22, 0.5);
+    box-shadow: 0 15px 40px rgba(249, 115, 22, 0.15);
+  }
+  .carousel-image-wrapper {
+    width: 243px;
+    height: 304px;
+    border-radius: 8px;
+    overflow: hidden;
+    background: rgba(10, 15, 46, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
   }
   .carousel-slide img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     display: block;
+    image-rendering: -webkit-optimize-contrast;
   }
   .carousel-caption {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: linear-gradient(to top, rgba(10, 15, 46, 0.95), transparent);
-    padding: 40px 30px 24px;
+    width: 100%;
     text-align: left;
   }
   .carousel-caption h3 {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 1.8rem;
+    font-size: 1.35rem;
     font-weight: 800;
     text-transform: uppercase;
     color: var(--orange);
-    margin-bottom: 6px;
+    margin-bottom: 8px;
   }
   .carousel-caption p {
-    font-size: 1rem;
-    color: var(--white);
-    opacity: 0.9;
+    font-size: 0.9rem;
+    color: var(--gray);
+    line-height: 1.5;
   }
   .carousel-btn {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background: rgba(10, 15, 46, 0.7);
+    background: rgba(10, 15, 46, 0.8);
     border: 1px solid var(--border);
     color: var(--white);
-    width: 50px;
-    height: 50px;
+    width: 45px;
+    height: 45px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     cursor: pointer;
     z-index: 10;
     transition: background 0.3s, border-color 0.3s, transform 0.3s;
@@ -345,20 +364,19 @@
     border-color: var(--orange);
     transform: translateY(-50%) scale(1.1);
   }
-  .carousel-btn.prev { left: 20px; }
-  .carousel-btn.next { right: 20px; }
+  .carousel-btn.prev { left: -10px; }
+  .carousel-btn.next { right: -10px; }
   .carousel-dots {
     display: flex;
     justify-content: center;
-    gap: 10px;
-    margin-top: 24px;
+    gap: 8px;
+    margin-top: 30px;
   }
   .carousel-dot {
-    width: 12px;
-    height: 12px;
+    width: 10px;
+    height: 10px;
     border-radius: 50%;
     background: rgba(255, 255, 255, 0.2);
-    border: 1px solid transparent;
     cursor: pointer;
     transition: background 0.3s, transform 0.3s;
   }
@@ -823,7 +841,9 @@
       <div class="carousel-track">
         <!-- Slide 1 -->
         <div class="carousel-slide">
-          <img src="images/foto1.jpg" alt="Apresentação Teórica do Curso">
+          <div class="carousel-image-wrapper">
+            <img src="images/foto1.jpg" alt="Apresentação Teórica do Curso">
+          </div>
           <div class="carousel-caption">
             <h3>Teoria e Regulamentação</h3>
             <p>Conceitos fundamentais de voo, regras da ANAC e DECEA para voar com total legalidade e segurança.</p>
@@ -831,7 +851,9 @@
         </div>
         <!-- Slide 2 -->
         <div class="carousel-slide">
-          <img src="images/foto2.jpg" alt="Instrução Presencial e Equipamentos">
+          <div class="carousel-image-wrapper">
+            <img src="images/foto2.jpg" alt="Instrução Presencial e Equipamentos">
+          </div>
           <div class="carousel-caption">
             <h3>Instrução Individual Personalizada</h3>
             <p>Entendimento detalhado dos controles, gimbals, configurações de aplicativo e planejamento de voo.</p>
@@ -839,7 +861,9 @@
         </div>
         <!-- Slide 3 -->
         <div class="carousel-slide">
-          <img src="images/foto3.jpg" alt="Voo de Drone em Campo Aberto">
+          <div class="carousel-image-wrapper">
+            <img src="images/foto3.jpg" alt="Voo de Drone em Campo Aberto">
+          </div>
           <div class="carousel-caption">
             <h3>Prática de Voo em Campo</h3>
             <p>Decolagem, pouso e manobras reais sob supervisão atenta do instrutor em Florianópolis/SC.</p>
@@ -847,7 +871,9 @@
         </div>
         <!-- Slide 4 -->
         <div class="carousel-slide">
-          <img src="images/foto4.jpg" alt="Operação do Controle do Drone">
+          <div class="carousel-image-wrapper">
+            <img src="images/foto4.jpg" alt="Operação do Controle do Drone">
+          </div>
           <div class="carousel-caption">
             <h3>Domínio dos Controles e Câmera</h3>
             <p>Aprenda a operar os modos de voo inteligente e configurar a câmera para fotos e vídeos profissionais.</p>
@@ -855,7 +881,9 @@
         </div>
         <!-- Slide 5 -->
         <div class="carousel-slide">
-          <img src="images/foto5.jpg" alt="Manutenção e Análise do Equipamento">
+          <div class="carousel-image-wrapper">
+            <img src="images/foto5.jpg" alt="Manutenção e Análise do Equipamento">
+          </div>
           <div class="carousel-caption">
             <h3>Manutenção e Equipamentos Profissionais</h3>
             <p>Conheça os modelos de drones de última geração, cuidados com bateria e checklists pré-voo.</p>
@@ -1086,7 +1114,7 @@
     <img src="images/logo-evoluwill.jpg" alt="EvoluWill Drones Logo" class="footer-logo-img">
   </div>
   <p>© 2025 EvoluWill Drones · Todos os direitos reservados · Florianópolis, SC</p>
-  <p class="footer-tag">🚁 VOE ALTO, VOE SEGURO</p>
+  <p class="footer-tag">🚀 VOE ALTO, VOE SEGURO</p>
 </footer>
 
 <script>
@@ -1117,24 +1145,58 @@ document.querySelectorAll('a,button,.carousel-dot').forEach(el => {
   
   let currentIndex = 0;
   let autoplayTimer = null;
-  const autoplayInterval = 4000; // 4 segundos por slide
+  const autoplayInterval = 5000; // 5 segundos por slide
+
+  function getCardsToShow() {
+    if (window.innerWidth > 960) return 3;
+    if (window.innerWidth > 600) return 2;
+    return 1;
+  }
+
+  function getMaxIndex() {
+    return Math.max(0, slides.length - getCardsToShow());
+  }
 
   function updateCarousel(targetIndex) {
-    // Garante que o index está dentro dos limites
+    const maxIndex = getMaxIndex();
+    
+    // Circula os índices de volta se passar do limite
     if (targetIndex < 0) {
-      targetIndex = slides.length - 1;
-    } else if (targetIndex >= slides.length) {
+      targetIndex = maxIndex;
+    } else if (targetIndex > maxIndex) {
       targetIndex = 0;
     }
     
-    // Move o track
-    track.style.transform = `translateX(-${targetIndex * 100}%)`;
+    const cardsToShow = getCardsToShow();
+    // A porcentagem de deslocamento por card
+    const slideWidthPercent = 100 / cardsToShow;
     
-    // Atualiza classes dos dots
-    dots[currentIndex].classList.remove('active');
-    dots[targetIndex].classList.add('active');
+    track.style.transform = `translateX(-${targetIndex * slideWidthPercent}%)`;
+    
+    // Atualiza os dots
+    dots.forEach((dot, index) => {
+      if (index === targetIndex) {
+        dot.classList.add('active');
+      } else {
+        dot.classList.remove('active');
+      }
+    });
     
     currentIndex = targetIndex;
+  }
+
+  function updateDotsVisibility() {
+    const maxIndex = getMaxIndex();
+    dots.forEach((dot, index) => {
+      if (index > maxIndex) {
+        dot.style.display = 'none';
+      } else {
+        dot.style.display = 'inline-block';
+      }
+    });
+    if (currentIndex > maxIndex) {
+      updateCarousel(maxIndex);
+    }
   }
 
   function startAutoplay() {
@@ -1170,6 +1232,12 @@ document.querySelectorAll('a,button,.carousel-dot').forEach(el => {
     startAutoplay();
   });
 
+  // Janela redimensionada
+  window.addEventListener('resize', () => {
+    updateDotsVisibility();
+    updateCarousel(currentIndex);
+  });
+
   // Touch e gestos para mobile
   let startX = 0;
   let endX = 0;
@@ -1193,7 +1261,8 @@ document.querySelectorAll('a,button,.carousel-dot').forEach(el => {
     startAutoplay();
   }, { passive: true });
 
-  // Iniciar autoplay
+  // Iniciar autoplay e dots
+  updateDotsVisibility();
   startAutoplay();
 })();
 
