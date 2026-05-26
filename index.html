@@ -353,15 +353,16 @@
     box-shadow: 0 15px 40px rgba(249, 115, 22, 0.15);
   }
   .carousel-image-wrapper {
-    width: 243px;
-    height: 304px;
+    width: 100%;
+    max-width: 243px;
+    aspect-ratio: 243 / 304;
     border-radius: 8px;
     overflow: hidden;
     background: rgba(10, 15, 46, 0.5);
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 20px;
+    margin: 0 auto 20px;
     border: 1px solid rgba(255, 255, 255, 0.05);
   }
   .carousel-slide img {
@@ -826,6 +827,7 @@
     .carousel-caption p { font-size: 0.85rem; }
     .carousel-slide { flex: 0 0 100%; }
     .carousel-track { gap: 0; }
+    .carousel-container { padding: 0 20px; }
   }
 
   /* ── INTERSECTION OBSERVER ANIM ── */
