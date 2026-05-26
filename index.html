@@ -520,11 +520,12 @@
     width: 130px;
     height: auto;
     filter: drop-shadow(0 0 20px rgba(249, 115, 22, 0.4));
-    animation: spinSlow 8s linear infinite;
+    animation: floatImg 4s ease-in-out infinite;
   }
-  @keyframes spinSlow {
-    from { transform: rotate(0deg); }
-    to   { transform: rotate(360deg); }
+  @keyframes floatImg {
+    0%   { transform: translateY(0); }
+    50%  { transform: translateY(-15px); }
+    100% { transform: translateY(0); }
   }
   @keyframes float {
     0%,100%{ transform: translateY(0); }
@@ -794,7 +795,7 @@
     nav ul { display: none; }
     .features-grid { grid-template-columns: 1fr 1fr; }
     #curriculum { grid-template-columns: 1fr; }
-    .curriculum-visual { display: none; }
+    .curriculum-visual { display: block; max-width: 220px; margin: 0 auto; }
     .benefits-grid { grid-template-columns: 1fr 1fr; }
     .testimonials-row { grid-template-columns: 1fr; }
   }
@@ -802,6 +803,7 @@
     .features-grid { grid-template-columns: 1fr; }
     .benefits-grid { grid-template-columns: 1fr; }
     .pricing-card { padding: 36px 24px; }
+    .curriculum-visual { max-width: 160px; }
     .hero-stats { gap: 28px; }
     .carousel-btn { width: 40px; height: 40px; font-size: 1.2rem; }
     .carousel-btn.prev { left: 10px; }
